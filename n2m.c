@@ -1,35 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "lib.h"
 
-void convertStringToInt(char **argv, int *numero, int *baseAtual, int *baseNova);
+//gcc -W -Wall -pedantic -std=c11 n2m.c lib.c -o n2m
+//https://docs.google.com/document/d/1iHlHrIqbzdTEm2iDiwuBjjT9_XHJyOqFQXrchjRcwW8/edit#
+int convertBase(int numArguments, char **arguments);
+
 
 int main(int argc, char *argv[]){
 
-    int numero, baseAtual, baseNova;
+        convertBase(argc, argv);
 
-    printf("quantidade de argumentos: %d\n"
-            "argumentos[0]: %s\n", argc, argv[1]);
-
-
-    //para bases menores ou igual a 10
-    convertStringToInt(argv, &numero, &baseAtual, &baseNova);
-
-    printf("numero: %d\n"
-            "baseAtual: %d\n"
-            "baseNova: %d\n"
-            , numero, baseAtual, baseNova);
-    
-
-    exit(0);
-}
-void convertStringToInt(char **argv, int *numero, int *baseAtual, int *baseNova){
-    if(strcmp("0", argv[1]) == 0){
-        *numero = atoi(argv[1]);     
-    }
-    *baseAtual = atoi(argv[2]);
-    *baseNova = atoi(argv[3]);
-
-    return;
+        exit(0);
 }
 
