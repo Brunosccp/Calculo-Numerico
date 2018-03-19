@@ -2,7 +2,7 @@
 
 int convertBase(int numArguments, char **argument){
     checkArguments(numArguments, argument);
-    
+
 
 
     return 0;
@@ -27,7 +27,7 @@ void checkBaseArguments(char **argument){
     while(j < strlen(argument[2])){
         if(isdigit(argument[2][j]) == false){
             printf("ERROR: BASES ONLY ACCEPT NUMBERS\n");
-            exit(2);
+            exit(1);
         }    //testando se tem letra na base atual
         j++;
     }
@@ -35,15 +35,15 @@ void checkBaseArguments(char **argument){
         while(j < strlen(argument[3])){
         if(isdigit(argument[3][j]) == false){
             printf("ERROR: BASES ONLY ACCEPT NUMBERS\n");
-            exit(2);
+            exit(1);
         }    //testando se tem letra na base nova
         j++;
     }
     int base = atoi(argument[2]);
     int newBase = atoi (argument[3]);
 
-    if( base < 2 || base > 32 || newBase < 2 || newBase > 32){
-        printf("ERROR: ONLY BASES BETWEEN 2 AND 32\n");
+    if( base < 2 || base > 36 || newBase < 2 || newBase > 36){
+        printf("ERROR: ONLY BASES BETWEEN 2 AND 36\n");
         exit(3);
     }
 }
@@ -55,7 +55,7 @@ void checkNumberArgument(char ** argument){
         while (i < strlen(argument[1])){
             if(argument[1][i] < 48 || argument[1][i] > (49 + (base - 2))){
                 printf("INVALID SYMBOL FOR NUMBER OR INVALID SYMBOL IN NUMBER FOR THIS BASE\n");
-                exit(4);
+                exit(1);
             }
             i++;
         }
@@ -64,7 +64,7 @@ void checkNumberArgument(char ** argument){
         while(i < strlen(argument[1])){
             if(argument[1][i] < 48 || (argument[1][i] > 57 && argument[1][i] < 97) || argument[1][i] > (97 + base - 11)) {
                 printf("INVALID SYMBOL FOR NUMBER OR INVALID SYMBOL IN NUMBER FOR THIS BASE\n");
-                exit(4);
+                exit(1);
             }
             i++;
         }
