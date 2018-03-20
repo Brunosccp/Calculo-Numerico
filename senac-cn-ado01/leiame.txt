@@ -1,0 +1,37 @@
+feito por Bruno Castro Rocca
+5 semestre de Ciência da Computação
+
+neste leia-me serão citados as funções e como elas funcionam dentro do algoritmo.
+
+convertBase: função principal do lib.c, chama a função que observa os parâmetros, coverte as
+bases para int, chama a função de conversão e retorna o resultado.
+
+checkArguments: função base que verifica os parâmetros, verifica quantidade de parâmetros, e 
+chama as funções que verificam o número e as bases.
+
+checkBaseArgument: função que serve para verificar se as bases que foram postas de parâmetros
+estão de acordo com o suportado pelo algoritmo.
+
+checkBaseArgument: função que serve para verificar se o número que foi posto de parâmetro está 
+de acordo com o suportado pelo algoritmo.
+
+convertToBase: função básica da conversão, chama primeiro a conversão do número atual para base 
+10, e depois chama a conversão da base 10 para a base desejada, assim retorna o resultado.
+
+convertToBase10: função que converte o número e sua base recebida por parâmetro para base 10
+
+convertToBaseX: converte o número em base 10 recebido de parametro para a base desejada, também
+recebida no parâmetro.
+
+poww: função que retorna o exponencial do número recebido de padrão, o expoente também é um 
+argumento.
+
+arrayLength: função para prever o tamanho necessário de array antes da conversão para a base
+desejada.
+
+invertArray: função que inverte os índices do vetor, necessário para o algoritmo de conversão da
+base 10 para a base desejada.
+
+intValue: retorna o valor inteiro (na base 10) do char passado.
+
+charValue: retorna o char correspondente ao valor inteiro na base 10 passado como parâmetro.

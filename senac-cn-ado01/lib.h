@@ -9,11 +9,11 @@ typedef int bool;
 #define true 1
 #define false 0
 
-int convertBase(int numArguments, char **arguments);
+char* convertBase(int numArguments, char **arguments);
 void checkArguments(int numArguments, char **argument);
 void checkBaseArguments(char **argument);
 void checkNumberArgument(char ** argument);
-int convertToBase(char *number, int base, int newBase);
+char* convertToBase(char *number, int base, int newBase);
 int convertToBase10(char *number, int base);
 char* convertToBaseX(int number, int newBase);
 int poww(int number, int expoent);

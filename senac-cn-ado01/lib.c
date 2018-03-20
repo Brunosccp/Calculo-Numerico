@@ -1,18 +1,18 @@
 #include "lib.h"
 
-int convertBase(int numArguments, char **argument){
+char* convertBase(int numArguments, char **argument){
     checkArguments(numArguments, argument);
     int base = atoi(argument[2]);
     int newBase = atoi(argument[3]);
 
-    convertToBase(argument[1], base, newBase);
+    char *result = convertToBase(argument[1], base, newBase);
 
 
-    return 0;
+    return result;
 }
 void checkArguments(int numArguments, char **argument){
     if(numArguments != 4){
-        printf("ERROR: INVALID QUANTITY OF ARGUMENTS\n");
+        //printf("ERROR: INVALID QUANTITY OF ARGUMENTS\n");
         exit(1);
     }
     checkBaseArguments(argument);
@@ -28,7 +28,7 @@ void checkBaseArguments(char **argument){
     unsigned int j = 0;
     while(j < strlen(argument[2])){
         if(isdigit(argument[2][j]) == false){
-            printf("ERROR: BASES ONLY ACCEPT NUMBERS\n");
+            //printf("ERROR: BASES ONLY ACCEPT NUMBERS\n");
             exit(1);
         }    //testando se tem letra na base atual
         j++;
@@ -36,7 +36,7 @@ void checkBaseArguments(char **argument){
     j = 0;
         while(j < strlen(argument[3])){
         if(isdigit(argument[3][j]) == false){
-            printf("ERROR: BASES ONLY ACCEPT NUMBERS\n");
+            //printf("ERROR: BASES ONLY ACCEPT NUMBERS\n");
             exit(1);
         }    //testando se tem letra na base nova
         j++;
@@ -45,7 +45,7 @@ void checkBaseArguments(char **argument){
     int newBase = atoi (argument[3]);
 
     if( base < 2 || base > 36 || newBase < 2 || newBase > 36){
-        printf("ERROR: ONLY BASES BETWEEN 2 AND 36\n");
+        //printf("ERROR: ONLY BASES BETWEEN 2 AND 36\n");
         exit(1);
     }
 }
@@ -56,7 +56,7 @@ void checkNumberArgument(char ** argument){
     if(base <= 10){ //checa os simbolos validos ate base 10
         while (i < strlen(argument[1])){
             if(argument[1][i] < 48 || argument[1][i] > (49 + (base - 2))){
-                printf("INVALID SYMBOL FOR NUMBER OR INVALID SYMBOL IN NUMBER FOR THIS BASE\n");
+                //printf("INVALID SYMBOL FOR NUMBER OR INVALID SYMBOL IN NUMBER FOR THIS BASE\n");
                 exit(1);
             }
             i++;
@@ -65,21 +65,20 @@ void checkNumberArgument(char ** argument){
     else{   //checa os simbolos válidos para bases maiores do que 10
         while(i < strlen(argument[1])){
             if((argument[1][i] < 48) || (argument[1][i] > 57 && argument[1][i] < 65) || (argument[1][i] > 90 && argument[1][i] < 97) || argument[1][i] > (97 + base - 11)) {
-                printf("INVALID SYMBOL FOR NUMBER OR INVALID SYMBOL IN NUMBER FOR THIS BASE\n");
+                //printf("INVALID SYMBOL FOR NUMBER OR INVALID SYMBOL IN NUMBER FOR THIS BASE\n");
                 exit(1);
             }
             i++;
         }
     }
 }
-int convertToBase(char *number, int base, int newBase){
+char* convertToBase(char *number, int base, int newBase){
 
     int numberBase10 = convertToBase10(number, base);
-    printf("numero na base 10: %d\n",numberBase10);
 
-    convertToBaseX(numberBase10, newBase);
+    char *result = convertToBaseX(numberBase10, newBase);
 
-    return 0;
+    return result;
 }
 int convertToBase10(char *number, int base){
     unsigned int i;
@@ -90,7 +89,7 @@ int convertToBase10(char *number, int base){
         result += poww(base, j) * intValue(number[i]);
         j--;
         if(result > LIMIT){
-            printf("ERROR: NUMBER BIGGER THAN 2^32\n");
+            //printf("ERROR: NUMBER BIGGER THAN 2^32\n");
             exit(1);
         }
     }
@@ -101,7 +100,6 @@ char* convertToBaseX(int number, int newBase){
     unsigned int i = 0;
     unsigned int length = 1;
     result = (char*) malloc (arrayLength (number, newBase) * sizeof(char));
-    printf("tamanho: %ld\n", sizeof(result));
 
 
     while(true){
@@ -114,10 +112,7 @@ char* convertToBaseX(int number, int newBase){
         i++;
         length++;
     }
-    printf("tamanho do vetor: %d\n", length);
     result = invertArray(result, length);
-
-    printf("result: %s\n", result);
 
     return result;
 }
