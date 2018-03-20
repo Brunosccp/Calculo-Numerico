@@ -64,7 +64,7 @@ void checkNumberArgument(char ** argument){
     }
     else{   //checa os simbolos válidos para bases maiores do que 10
         while(i < strlen(argument[1])){
-            if(argument[1][i] < 48 || (argument[1][i] > 57 && argument[1][i] < 97) || argument[1][i] > (97 + base - 11)) {
+            if((argument[1][i] < 48) || (argument[1][i] > 57 && argument[1][i] < 65) || (argument[1][i] > 90 && argument[1][i] < 97) || argument[1][i] > (97 + base - 11)) {
                 printf("INVALID SYMBOL FOR NUMBER OR INVALID SYMBOL IN NUMBER FOR THIS BASE\n");
                 exit(1);
             }
@@ -75,28 +75,51 @@ void checkNumberArgument(char ** argument){
 int convertToBase(char *number, int base, int newBase){
 
     int numberBase10 = convertToBase10(number, base);
-    printf("ignore: %d\n",newBase);
     printf("numero na base 10: %d\n",numberBase10);
 
-
+    convertToBaseX(numberBase10, newBase);
 
     return 0;
 }
 int convertToBase10(char *number, int base){
     unsigned int i;
-    long int result = 0;
+    unsigned long long int result = 0;
     int j = strlen(number) - 1;
 
     for (i = 0; i < strlen(number); i++){
         result += poww(base, j) * intValue(number[i]);
         j--;
-
+        if(result > LIMIT){
+            printf("ERROR: NUMBER BIGGER THAN 2^32\n");
+            exit(1);
+        }
     }
     return result;
 }
 char* convertToBaseX(int number, int newBase){
-    
+    char *result;
+    unsigned int i = 0;
+    unsigned int length = 1;
+    result = (char*) malloc (arrayLength (number, newBase) * sizeof(char));
+    printf("tamanho: %ld\n", sizeof(result));
 
+
+    while(true){
+        result[i] = charValue(number % newBase);
+
+        if(number / newBase < 1){
+            break;
+        }
+        number /= newBase;
+        i++;
+        length++;
+    }
+    printf("tamanho do vetor: %d\n", length);
+    result = invertArray(result, length);
+
+    printf("result: %s\n", result);
+
+    return result;
 }
 int poww(int number, int expoent){
     if(expoent == 0)    return 1;
@@ -109,11 +132,46 @@ int poww(int number, int expoent){
     
     return result;
 }
+int arrayLength(int number, int newBase){
+    int i = 0;
+    while(number/newBase >= 1){
+        i++;
+        number /= newBase;
+    }
+    i++;
+    return i;
+}
+char* invertArray(char* number, int length){
+    char *result;
+    result = (char*) malloc (length * sizeof(char));
+    int i = 0;
+    int j = length - 1;
+
+    while(i < length){
+        result[i] = number[j];
+
+        j--;
+        i++;
+    }
+
+    return result;
+}
 int intValue(char number){
     if(number >= 48 && number <= 57){
         return (number - 48);
     }
+    else if(number >= 65 && number <= 90){
+        return (number - 55);
+    }
     else {
         return (number - 87);
+    }
+}
+char charValue(int number){
+    if(number >= 0 && number <= 9){
+        return (number + 48);
+    }
+    else{
+        return (number + 87);
     }
 }
