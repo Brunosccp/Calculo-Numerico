@@ -2,25 +2,27 @@
 
 int convertBase(int numArguments, char **argument){
     checkArguments(numArguments, argument);
+    int base = atoi(argument[2]);
+    int newBase = atoi(argument[3]);
 
+    convertToBase(argument[1], base, newBase);
 
 
     return 0;
 }
-
 void checkArguments(int numArguments, char **argument){
     if(numArguments != 4){
         printf("ERROR: INVALID QUANTITY OF ARGUMENTS\n");
         exit(1);
     }
-
     checkBaseArguments(argument);
     checkNumberArgument(argument);
 
-    printf("numero: %s\n"
+    /*printf("numero: %s\n"
             "base: %s\n"
             "nova Base: %s\n",
             argument[1],argument[2],argument[3]);
+            */
 }
 void checkBaseArguments(char **argument){
     unsigned int j = 0;
@@ -44,7 +46,7 @@ void checkBaseArguments(char **argument){
 
     if( base < 2 || base > 36 || newBase < 2 || newBase > 36){
         printf("ERROR: ONLY BASES BETWEEN 2 AND 36\n");
-        exit(3);
+        exit(1);
     }
 }
 void checkNumberArgument(char ** argument){
@@ -68,5 +70,50 @@ void checkNumberArgument(char ** argument){
             }
             i++;
         }
+    }
+}
+int convertToBase(char *number, int base, int newBase){
+
+    int numberBase10 = convertToBase10(number, base);
+    printf("ignore: %d\n",newBase);
+    printf("numero na base 10: %d\n",numberBase10);
+
+
+
+    return 0;
+}
+int convertToBase10(char *number, int base){
+    unsigned int i;
+    long int result = 0;
+    int j = strlen(number) - 1;
+
+    for (i = 0; i < strlen(number); i++){
+        result += poww(base, j) * intValue(number[i]);
+        j--;
+
+    }
+    return result;
+}
+char* convertToBaseX(int number, int newBase){
+    
+
+}
+int poww(int number, int expoent){
+    if(expoent == 0)    return 1;
+    int result = number;
+
+    int i;
+    for (i = 1; i < expoent; i++){
+        result *= number;
+    }
+    
+    return result;
+}
+int intValue(char number){
+    if(number >= 48 && number <= 57){
+        return (number - 48);
+    }
+    else {
+        return (number - 87);
     }
 }
