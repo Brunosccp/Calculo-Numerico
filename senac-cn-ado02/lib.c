@@ -4,7 +4,6 @@ void generateDat(){
     FILE *seno_file = fopen("seno.dat", "w");
     FILE *cosseno_file = fopen("cosseno.dat", "w");
 
-
     unsigned int i;
     for (i = 1; i <= 720; i++){
         double aprSen = seno(i);
@@ -29,6 +28,31 @@ void generateDat(){
     fclose(seno_file);
     fclose(cosseno_file);
 
+}
+void generatePlot(){
+    FILE *seno_plot = popen("gnuplot -persistent", "w");
+    FILE *cosseno_plot = popen("gnuplot -persistent", "w");
+
+    //mudando output para png e nomeando arquivos
+    fprintf(seno_plot, "set term png \n");
+    fprintf(seno_plot, "set output \"seno.png\" \n");
+    fprintf(cosseno_plot, "set term png \n");
+    fprintf(cosseno_plot, "set output 'cosseno.png' \n");
+
+    //dando titulo aos gráficos
+    fprintf(seno_plot, "set title 'Function Sine' \n");
+    fprintf(cosseno_plot, "set title 'Function Cosine' \n");
+
+    //fazendo intervalo entre 0 e 720
+    fprintf(seno_plot, "set xrange [0:720] \n");
+    fprintf(cosseno_plot, "set xrange [0:720] \n");
+
+    //pegando os dados do .dat e transformando em gráfico
+    fprintf(seno_plot ,"plot \"seno.dat\" using 1:2 title 'Seno'\n");
+    fprintf(cosseno_plot ,"plot \"cosseno.dat\" using 1:2 title 'Cosseno'\n");
+
+    pclose(seno_plot);
+    pclose(cosseno_plot);
 }   
 double cosseno(double x){
     unsigned int i;

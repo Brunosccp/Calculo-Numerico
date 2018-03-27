@@ -1,0 +1,28 @@
+feito por Bruno Castro Rocca
+5 semestre de Ciência da Computação
+
+este leia-me serão citados as funções e como elas funcionam dentro do algoritmo.
+
+generateDat(): esta função tem a finalidade de criar dois arquivos .dat com uma tabela com a
+função seno e cosseno que foi criada, a primeira coluna refere-se ao tamanho do arco (em graus),
+a segunda ao seno ou cosseno do arco, a terceira ao erro absoluto e a quarta ao erro relativo.
+Para calcular o erro absoluto e relativo foi usado as funções seno e cosseno da biblioteca 
+padrão math.h.
+
+generatePlot(): esta função é usada para criar dois gráficos png usando o gnuplot, os gráficos
+foram criados a partir dos .dat's gerados anteriormente.
+
+cosseno(double x): função cosseno criada a parte para este exercício, recebe o parâmetro em
+graus. Foi criado usando base as Séries de Taylor.
+seno(double x): função seno criada a parte para este exercício, recebe o parâmetro em graus. 
+Foi criado usando base as Séries de Taylor.
+
+fat(int x): função para calcular o fatorial do parâmetro inteiro passado. Requisito para 
+calcular o seno e o cosseno.
+
+absolutError(double x, double y): calcula o erro absoluto entre os dois parâmetros, no caso 
+seria o seno ou cosseno entre da biblioteca padrão e os criados para este exercício.
+
+relativeError(double absolutError, double x): calcula o erro relativo, é passado o erro 
+absoluto obtido anteriormente e o seno "real", da biblioteca padrão.
+
