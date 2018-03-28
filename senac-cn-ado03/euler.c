@@ -4,7 +4,8 @@
 //https://docs.google.com/document/d/1iHlHrIqbzdTEm2iDiwuBjjT9_XHJyOqFQXrchjRcwW8/edit#
 
 int main(){
-    
-
+    //printf("o resultado deu: %f", eulerNumber());
+    //eulerNumber();
+    generatePlot();
     exit(0);
 }
