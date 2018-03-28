@@ -5,7 +5,6 @@
 #include <math.h>
 
 #define PI 3.14159265359
-#define _XOPEN_SOURCE 500
 
 typedef int bool;
 #define true 1
