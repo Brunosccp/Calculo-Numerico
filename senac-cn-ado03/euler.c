@@ -6,6 +6,9 @@
 int main(){
     //printf("o resultado deu: %f", eulerNumber());
     //eulerNumber();
-    generatePlot();
+    generateFloatPlot();
+    generateDoublePlot();
+    generateLongDoublePlot();
+
     exit(0);
 }

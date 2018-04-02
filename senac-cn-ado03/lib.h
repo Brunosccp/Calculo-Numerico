@@ -8,5 +8,6 @@ typedef int bool;
 #define true 1
 #define false 0
 
-
-void generatePlot();
+void generateFloatPlot();
+void generateDoublePlot();
+void generateLongDoublePlot();
