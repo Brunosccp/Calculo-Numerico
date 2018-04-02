@@ -1,0 +1,8 @@
+eito por Bruno Castro Rocca
+5 semestre de Ciência da Computação
+
+este leia-me serão citados as funções e como elas funcionam dentro do algoritmo.
+
+void generateFloatPlot(); generateDoublePlot(); generateLongDoublePlot(): Foi colocado as três funções juntas pois elas fazem a mesma coisa, só alterna o tipo das variaveis usadas, que no final das contas altera drásticamente a
+aproximação do número de euler. As funções geram um gráfico no gnuplot, usando popen, e geram-o em png. Foram usadas as funções powf, pow, powl de diferentes entre as funções, pois estas embora façam a mesma coisa possuem retorno
+diferente, assim alterando o resultado drásticamente, comparado se usar somente a função pow ,mais popularmente conhecida.
