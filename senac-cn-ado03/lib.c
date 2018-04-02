@@ -52,7 +52,7 @@ void generateLongDoublePlot(){
     fprintf(euler_plot, "set output 'LongDoubleEuler.png' \n");
     fprintf(euler_plot, "set logscale x \n");
     fprintf(euler_plot, "set yrange [0:4] \n");
-    //fprintf(euler_plot, "set title 'Euler Approximation with Long Double' \n");
+    fprintf(euler_plot, "set title 'Euler Approximation with Long Double' \n");
 
     fprintf(euler_plot, "plot '-' w l \n");
     long double i;
@@ -60,7 +60,7 @@ void generateLongDoublePlot(){
     for (i = 1; i <= 10e20; i *= 10){
         result = powl((1 + 1/i), i);
         fprintf(euler_plot, "%Lf %Lf\n", i, result);
-        printf("valor %Lg de %Lf\n", i, result);
+        //printf("valor %Lg de %Lf\n", i, result);
     }
 
     fprintf(euler_plot, "e");
