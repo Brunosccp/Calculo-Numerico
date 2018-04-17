@@ -1,0 +1,13 @@
+Feito por Bruno Castro Rocca
+5 semestre de Ciência da Computação
+
+este leia-me serão citados as funções e como elas funcionam dentro do algoritmo.
+
+    Os 3 programas sao analogos, pois os 3 sao feito de forma parecida, com a mudanca somente no metodo
+    usado para calcular a raiz quadrada do input
+    
+    os mains possuem a funcao de receber o argumento 1 colocado na hora da execucao do programa, sendo
+    batizado de argv, e assim passa para uma variavel de precisao dupla
+
+    assim ele chama a funcao para calcular a raiz dentro de uma impressao, com o metodo correto para cada
+    programa

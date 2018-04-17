@@ -31,13 +31,14 @@ PROGRAM bissec
     end function
     real function calcBisseccao(x, interval) result(mid)
     integer, intent(in) :: x, interval
+    integer :: i
     double precision :: min, max, precision
     max = interval
     min = interval-1.0
     mid = getMid(max,min)
     precision = 0.0000001
 
-    do while((max - min) / 2.0 >= precision)
+    do i = 1, 10000
         if (mid ** 2.0 > x) then
             max = mid
         elseif (mid ** 2.0 < x) then
@@ -45,8 +46,13 @@ PROGRAM bissec
         else
             return
         end if
+
+        if ((max - min)  / 2.0 < precision) then
+            return
+        end if
+
         mid = getMid(max, min)
-        print *, "max - min: ", (max-min)
+        !print *, "max - min: ", (max-min)
         
     enddo
     
