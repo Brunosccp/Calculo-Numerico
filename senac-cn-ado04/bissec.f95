@@ -1,19 +1,18 @@
-
-
 !https://docs.google.com/document/d/1iHlHrIqbzdTEm2iDiwuBjjT9_XHJyOqFQXrchjRcwW8/edit#
 !gfortran secante.f95 -o secante
-!gfortran bissec.f95 -o secante
+!gfortran bissec.f95 -o bissec
 !gfortran newton.f95 -o secante
 
 PROGRAM bissec
     IMPLICIT NONE
-    
+    character(len = 32) :: argv
     integer :: x, y
-    y = getInterval(9)
     
+    call get_command_argument(1, argv)
+    read(argv, *) x
 
 
-    print *, "valor: ", calcBisseccao(x, y)
+    print *, calcBisseccao(x, getInterval(x))
     
 
     contains
@@ -25,19 +24,18 @@ PROGRAM bissec
         enddo
     end function
     real function getMid(x, y) result(i)
-        real, intent(in) :: x, y
+        double PRECISION, intent(in) :: x, y
         
         i = (x + y) / 2.0
 
     end function
-
     real function calcBisseccao(x, interval) result(mid)
     integer, intent(in) :: x, interval
-    real :: min, max, precision
+    double precision :: min, max, precision
     max = interval
     min = interval-1.0
     mid = getMid(max,min)
-    precision = 0.01
+    precision = 0.0000001
 
     do while((max - min) / 2.0 >= precision)
         if (mid ** 2.0 > x) then
@@ -48,6 +46,8 @@ PROGRAM bissec
             return
         end if
         mid = getMid(max, min)
+        print *, "max - min: ", (max-min)
+        
     enddo
     
 

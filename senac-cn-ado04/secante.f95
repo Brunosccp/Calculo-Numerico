@@ -1,52 +1,44 @@
-
-
 !https://docs.google.com/document/d/1iHlHrIqbzdTEm2iDiwuBjjT9_XHJyOqFQXrchjRcwW8/edit#
 !gfortran secante.f95 -o secante
-!gfortran bissec.f95 -o secante
-!gfortran newton.f95 -o secante
+!gfortran bissec.f95 -o bissec
+!gfortran newton.f95 -o newton
 
 PROGRAM secante
     IMPLICIT NONE
-    
-    REAL :: x
-    !READ *, x
-    integer :: y
-    y = getInterval(10)
-    z = getMid(y, y-1)
 
+    character(len = 32) :: arg
+    double precision :: input
 
+    call get_command_argument(1, arg)
 
-    print *, "valor: ", getMid(y, y-1)
-    
+    read(arg, *) input
+
+    print *, calcSecant(input)
 
     contains
-    integer function getInterval(x) result(i)
-        integer, intent(in) :: x
+    double precision function calcSecant(x) result(x2)
+        double precision, intent(in) :: x
+        integer :: i
+        double precision :: x0, x1, precision
 
-        do while(i ** 2  < x)
-            i = i + 1
+
+        x0 = x
+        x1 = x - 1
+        precision = 0.000000001
+        do i = 1, 100000
+            x2 = (x0 * x1 + x) / (x0 + x1)
+            
+            if (abs(x2 - x1) < precision) then
+                return
+            end if
+
+            x0 = x1
+            x1 = x2
         enddo
+
     end function
-    real function getMid(x, y) result(i)
-        integer, intent(in) :: x
-        integer, intent(in) :: y
         
-        i = (x + y) / 2.0
+    
 
-    end function
-
-
-    function calcSecante(i) result(j)
-        integer, intent(in) :: i !input
-        integer :: j !output
-
-        !print *, 'entrou na function:',i
-        j = i + 3
-    END function
-    real function calcBisseccao(x) result(j)
-    integer, intent(in) :: x
-
-
-    end function
 
 END PROGRAM secante
